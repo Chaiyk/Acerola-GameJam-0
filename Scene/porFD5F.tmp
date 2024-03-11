@@ -1,0 +1,16 @@
+[gd_scene load_steps=5 format=3 uid="uid://fma328hb84gu"]
+
+[ext_resource type="Texture2D" uid="uid://whck1qm0swe1" path="res://Sprite/Portal/Portal_Zero.png" id="1_2116r"]
+[ext_resource type="Script" path="res://Script/portal.gd" id="2_01g6x"]
+[ext_resource type="Texture2D" uid="uid://wi0gsqqsysi7" path="res://Sprite/Portal/Portal_One.png" id="3_hdv0l"]
+[ext_resource type="Texture2D" uid="uid://dlx73cq7qjdc1" path="res://Sprite/Portal/Portal_Two.png" id="4_tqvgi"]
+
+[node name="Portal" type="Sprite2D"]
+position = Vector2(0, -27)
+scale = Vector2(2, 2)
+script = ExtResource("2_01g6x")
+portal_zero = ExtResource("1_2116r")
+portal_one = ExtResource("3_hdv0l")
+portal_two = ExtResource("4_tqvgi")
+
+[connection signal="texture_changed" from="." to="." method="_on_texture_changed"]

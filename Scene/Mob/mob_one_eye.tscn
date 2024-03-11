@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=3 uid="uid://cytkeoyyfl72w"]
+
+[ext_resource type="Script" path="res://Script/mob.gd" id="1_xpwvb"]
+[ext_resource type="PackedScene" uid="uid://brd2fvtpnkxx" path="res://Scene/Mob/Control/Eye.tscn" id="2_pk5k0"]
+[ext_resource type="PackedScene" uid="uid://c0x1kxss8grk0" path="res://Scene/Mob/Control/Mob_Timer.tscn" id="3_orvus"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_g4vft"]
+radius = 20.0
+
+[node name="Mob_One_Eye" type="CharacterBody2D"]
+script = ExtResource("1_xpwvb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_g4vft")
+
+[node name="Move_Timer" parent="." instance=ExtResource("3_orvus")]
+
+[node name="All_Eye" type="Node2D" parent="."]
+
+[node name="Eye" parent="All_Eye" instance=ExtResource("2_pk5k0")]

@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://d1uevvxfqsr05"]
+
+[ext_resource type="Texture2D" uid="uid://d3ec4mj681s15" path="res://Sprite/Battery_ver2.png" id="1_kf8ds"]
+[ext_resource type="Script" path="res://Script/battery.gd" id="1_xter3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4dpxb"]
+size = Vector2(10, 14)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_u2i6i"]
+radius = 166.012
+
+[node name="battery" type="Node2D" groups=["Battery"]]
+script = ExtResource("1_xter3")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_kf8ds")
+
+[node name="Battery Area" type="Area2D" parent="."]
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Battery Area"]
+shape = SubResource("RectangleShape2D_4dpxb")
+
+[node name="Spawn_Area" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Spawn_Area"]
+shape = SubResource("CircleShape2D_u2i6i")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true
+
+[connection signal="area_entered" from="Spawn_Area" to="." method="_on_spawn_area_area_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

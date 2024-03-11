@@ -1,0 +1,49 @@
+[gd_scene load_steps=10 format=3 uid="uid://d0m1i4ntpb3j1"]
+
+[ext_resource type="Script" path="res://Script/portal.gd" id="1_4t1ee"]
+[ext_resource type="Texture2D" uid="uid://whck1qm0swe1" path="res://Sprite/Portal/Portal_Zero.png" id="2_s5k1d"]
+[ext_resource type="Texture2D" uid="uid://wi0gsqqsysi7" path="res://Sprite/Portal/Portal_One.png" id="3_2t71l"]
+[ext_resource type="Texture2D" uid="uid://dlx73cq7qjdc1" path="res://Sprite/Portal/Portal_Two.png" id="4_1282n"]
+[ext_resource type="Texture2D" uid="uid://bt1x2xbur3k0m" path="res://Sprite/Portal/Portal_Three.png" id="5_mudaq"]
+[ext_resource type="Texture2D" uid="uid://ciok68cbukdia" path="res://Sprite/Portal/Portal_Empty.png" id="6_lqcc0"]
+[ext_resource type="Texture2D" uid="uid://ctqsj38od5tm1" path="res://Sprite/Portal/Portal_Back.png" id="7_dqq0y"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xmp5p"]
+size = Vector2(24, 24)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_a6f0k"]
+polygon = PackedVector2Array(-8.34442, 14.8449, -10.9907, 1.09726, -9.02678, 0.71922, -9.78286, -3.20867, -7.81892, -3.58671, -8.575, -7.51461, -6.61106, -7.89265, -6.9891, -9.8566, 2.83063, -11.7468, 3.20867, -9.78286, 5.17262, -10.1609, 5.9287, -6.23302, 5.9287, -6.23302, 7.89265, -6.61106, 7.89265, -6.61106, 8.64874, -2.68317, 10.6127, -3.06121, 13.259, 10.6864)
+
+[node name="Portal_ver2" type="Node2D" groups=["Portal"]]
+visibility_layer = 2
+z_index = 20
+script = ExtResource("1_4t1ee")
+portal_zero = ExtResource("2_s5k1d")
+portal_one = ExtResource("3_2t71l")
+portal_two = ExtResource("4_1282n")
+portal_three = ExtResource("5_mudaq")
+portal_open = ExtResource("6_lqcc0")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+z_index = 10
+texture = ExtResource("6_lqcc0")
+
+[node name="Portal_Back" type="PointLight2D" parent="Sprite"]
+unique_name_in_owner = true
+visible = false
+position = Vector2(0, 3)
+energy = 100.0
+range_z_max = 0
+shadow_enabled = true
+shadow_item_cull_mask = 2
+texture = ExtResource("7_dqq0y")
+
+[node name="Portal Area" type="Area2D" parent="."]
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Portal Area"]
+shape = SubResource("RectangleShape2D_xmp5p")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+rotation = 0.190166
+occluder = SubResource("OccluderPolygon2D_a6f0k")
+occluder_light_mask = 2

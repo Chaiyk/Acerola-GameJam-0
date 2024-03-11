@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://lln0emvlc7ig"]
+
+[ext_resource type="PackedScene" uid="uid://c1qfa1lwjfhxk" path="res://Scene/player.tscn" id="1_pa0li"]
+[ext_resource type="PackedScene" uid="uid://b5mjfeviak627" path="res://Scene/torch.tscn" id="2_837nh"]
+[ext_resource type="PackedScene" uid="uid://d0m1i4ntpb3j1" path="res://Scene/portal_ver_2.tscn" id="4_s6nke"]
+[ext_resource type="Texture2D" uid="uid://vrh7pdfjwiu1" path="res://_Archives/Battery.png" id="4_tgr6w"]
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_6aa0v"]
+polygon = PackedVector2Array(467, 341, 513, 359, 521, 318)
+
+[node name="Main Game" type="Node2D"]
+
+[node name="Background" type="ColorRect" parent="."]
+z_index = -30
+offset_left = -110.0
+offset_top = -62.0
+offset_right = 1355.0
+offset_bottom = 768.0
+color = Color(0.0745098, 0.0745098, 0.0745098, 1)
+
+[node name="Player" parent="." instance=ExtResource("1_pa0li")]
+position = Vector2(543, 351)
+
+[node name="Torch" parent="." instance=ExtResource("2_837nh")]
+position = Vector2(590, 365)
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+occluder = SubResource("OccluderPolygon2D_6aa0v")
+
+[node name="Battery" type="Sprite2D" parent="."]
+position = Vector2(591, 390)
+texture = ExtResource("4_tgr6w")
+
+[node name="Portal_ver2" parent="." instance=ExtResource("4_s6nke")]
+position = Vector2(600, 303)

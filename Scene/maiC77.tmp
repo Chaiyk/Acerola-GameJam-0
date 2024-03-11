@@ -1,0 +1,28 @@
+[gd_scene load_steps=6 format=3 uid="uid://lln0emvlc7ig"]
+
+[ext_resource type="Script" path="res://Script/main_game.gd" id="1_fcvf2"]
+[ext_resource type="PackedScene" uid="uid://c1qfa1lwjfhxk" path="res://Scene/player.tscn" id="1_pa0li"]
+[ext_resource type="PackedScene" uid="uid://d0m1i4ntpb3j1" path="res://Scene/Item Scene/portal_ver_2.tscn" id="4_s6nke"]
+[ext_resource type="PackedScene" uid="uid://b5mjfeviak627" path="res://Scene/Item Scene/torch.tscn" id="5_hwsj2"]
+[ext_resource type="PackedScene" uid="uid://frlnss8se6gh" path="res://Scene/Item Scene/wood.tscn" id="5_qvemj"]
+
+[node name="Main Game" type="Node2D"]
+script = ExtResource("1_fcvf2")
+
+[node name="Spawn_Range" type="ColorRect" parent="."]
+z_index = -30
+offset_right = 1920.0
+offset_bottom = 1080.0
+color = Color(0.27451, 0.560784, 0.686275, 1)
+
+[node name="Player" parent="." instance=ExtResource("1_pa0li")]
+position = Vector2(898, 532)
+
+[node name="Portal_ver2" parent="." instance=ExtResource("4_s6nke")]
+position = Vector2(960, 480)
+
+[node name="Wood" parent="." instance=ExtResource("5_qvemj")]
+position = Vector2(992, 567)
+
+[node name="Torch" parent="." instance=ExtResource("5_hwsj2")]
+position = Vector2(960, 510)

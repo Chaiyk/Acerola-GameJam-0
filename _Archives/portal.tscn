@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://fma328hb84gu"]
+
+[ext_resource type="Texture2D" uid="uid://ciok68cbukdia" path="res://Sprite/Portal/Portal_Empty.png" id="1_kv34o"]
+[ext_resource type="Script" path="res://Script/portal.gd" id="2_01g6x"]
+
+[node name="Portal" type="Sprite2D"]
+position = Vector2(0, -27)
+scale = Vector2(2, 2)
+texture = ExtResource("1_kv34o")
+script = ExtResource("2_01g6x")
+
+[connection signal="texture_changed" from="." to="." method="_on_texture_changed"]

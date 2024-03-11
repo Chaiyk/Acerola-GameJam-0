@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://frlnss8se6gh"]
+
+[ext_resource type="Texture2D" uid="uid://7n4i0avthluc" path="res://Sprite/Wood.png" id="1_rvl4f"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l5tl0"]
+size = Vector2(14, 14)
+
+[node name="Wood" type="Node2D" groups=["Wood"]]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 20
+texture = ExtResource("1_rvl4f")
+
+[node name="Wood Area" type="Area2D" parent="."]
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Wood Area"]
+shape = SubResource("RectangleShape2D_l5tl0")

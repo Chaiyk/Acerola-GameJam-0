@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://c1m6loq5orayw"]
+
+[ext_resource type="Script" path="res://Script/notice.gd" id="1_e5y1d"]
+[ext_resource type="Texture2D" uid="uid://b3nhgyss0ixap" path="res://Sprite/Notice/Notice_Battery.png" id="2_nqbbb"]
+
+[node name="Notice_Wood" type="Node2D"]
+scale = Vector2(0.7, 0.7)
+script = ExtResource("1_e5y1d")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture = ExtResource("2_nqbbb")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.7
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

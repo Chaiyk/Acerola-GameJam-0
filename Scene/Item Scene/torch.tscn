@@ -1,0 +1,78 @@
+[gd_scene load_steps=7 format=3 uid="uid://b5mjfeviak627"]
+
+[ext_resource type="Texture2D" uid="uid://bvpfyldyi7b5y" path="res://Sprite/Torch_ver2.png" id="1_n0eh1"]
+[ext_resource type="Script" path="res://Script/torch.gd" id="1_t2hyt"]
+
+[sub_resource type="Gradient" id="Gradient_e3vc0"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.7)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 0)
+metadata/_snap_enabled = true
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_vcqvb"]
+gradient = SubResource("Gradient_e3vc0")
+width = 192
+height = 192
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_sgqx7"]
+radius = 122.037
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ccjve"]
+bg_color = Color(0.584314, 0.631373, 0.364706, 1)
+
+[node name="Torch" type="StaticBody2D" groups=["Torch"]]
+z_index = 20
+script = ExtResource("1_t2hyt")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(0, -3)
+energy = 16.0
+range_z_max = -1
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_vcqvb")
+texture_scale = 1.2
+
+[node name="PointLight2D2" type="PointLight2D" parent="."]
+position = Vector2(0, -3)
+energy = 0.7
+range_z_min = 35
+range_z_max = 40
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_vcqvb")
+texture_scale = 1.2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -3)
+shape = SubResource("CircleShape2D_sgqx7")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_n0eh1")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, -3)
+shape = SubResource("CircleShape2D_sgqx7")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 30.0
+one_shot = true
+autostart = true
+
+[node name="Timer_Bar" type="ProgressBar" parent="."]
+modulate = Color(1, 1, 1, 0.345098)
+offset_left = 5.0
+offset_top = -8.0
+offset_right = 9.0
+offset_bottom = 72.0
+scale = Vector2(0.2, 0.2)
+theme_override_styles/fill = SubResource("StyleBoxFlat_ccjve")
+max_value = 30.0
+step = 0.001
+rounded = true
+fill_mode = 3
+show_percentage = false
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

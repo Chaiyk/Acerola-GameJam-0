@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://dousmr1x17h5b"]
+
+[ext_resource type="Texture2D" uid="uid://bycexfak8ba6s" path="res://Sprite/Icon_Back.png" id="1_d3dbc"]
+[ext_resource type="Script" path="res://Scene/count.gd" id="1_j7ook"]
+[ext_resource type="Texture2D" uid="uid://7n4i0avthluc" path="res://Sprite/Wood.png" id="2_bde8j"]
+
+[node name="wood_count" type="Node2D"]
+position = Vector2(37, 20)
+script = ExtResource("1_j7ook")
+
+[node name="back" type="Sprite2D" parent="."]
+modulate = Color(0.521141, 0.521141, 0.521141, 0.235294)
+texture = ExtResource("1_d3dbc")
+
+[node name="icon" type="Sprite2D" parent="."]
+texture = ExtResource("2_bde8j")
+
+[node name="count_1" type="Sprite2D" parent="."]
+position = Vector2(13, 0)
+
+[node name="count_2" type="Sprite2D" parent="."]
+position = Vector2(18, 0)

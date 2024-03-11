@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://c4arlk7tvanvi"]
+
+[ext_resource type="Script" path="res://Script/mob.gd" id="1_42ufo"]
+[ext_resource type="PackedScene" uid="uid://brd2fvtpnkxx" path="res://Scene/Mob/Control/Eye.tscn" id="2_lscw5"]
+[ext_resource type="PackedScene" uid="uid://c0x1kxss8grk0" path="res://Scene/Mob/Control/Mob_Timer.tscn" id="3_ycq4a"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_g4vft"]
+radius = 24.0
+
+[node name="Mob_One_Eye" type="CharacterBody2D"]
+script = ExtResource("1_42ufo")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_g4vft")
+
+[node name="Move_Timer" parent="." instance=ExtResource("3_ycq4a")]
+
+[node name="All_Eye" type="Node2D" parent="."]
+
+[node name="Eye" parent="All_Eye" instance=ExtResource("2_lscw5")]
+position = Vector2(10, 5)
+
+[node name="Eye2" parent="All_Eye" instance=ExtResource("2_lscw5")]
+position = Vector2(-10, 5)
+
+[node name="Eye3" parent="All_Eye" instance=ExtResource("2_lscw5")]
+position = Vector2(0, -5)

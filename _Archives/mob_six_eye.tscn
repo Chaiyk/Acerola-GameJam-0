@@ -1,0 +1,34 @@
+[gd_scene load_steps=5 format=3 uid="uid://4ny8n2grytv"]
+
+[ext_resource type="Script" path="res://Script/mob.gd" id="1_202m1"]
+[ext_resource type="PackedScene" uid="uid://c0x1kxss8grk0" path="res://Scene/Mob/Control/Mob_Timer.tscn" id="2_w2nja"]
+[ext_resource type="PackedScene" uid="uid://brd2fvtpnkxx" path="res://Scene/Mob/Control/Eye.tscn" id="3_25fal"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_g4vft"]
+radius = 25.0
+
+[node name="Mob_One_Eye" type="CharacterBody2D"]
+script = ExtResource("1_202m1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_g4vft")
+
+[node name="Move_Timer" parent="." instance=ExtResource("2_w2nja")]
+
+[node name="Eye" parent="." instance=ExtResource("3_25fal")]
+position = Vector2(-10, -10)
+
+[node name="Eye2" parent="." instance=ExtResource("3_25fal")]
+position = Vector2(10, -10)
+
+[node name="Eye3" parent="." instance=ExtResource("3_25fal")]
+position = Vector2(-10, 0)
+
+[node name="Eye4" parent="." instance=ExtResource("3_25fal")]
+position = Vector2(10, 0)
+
+[node name="Eye5" parent="." instance=ExtResource("3_25fal")]
+position = Vector2(-10, 10)
+
+[node name="Eye6" parent="." instance=ExtResource("3_25fal")]
+position = Vector2(10, 10)
