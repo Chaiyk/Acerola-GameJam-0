@@ -1,0 +1,33 @@
+[gd_scene load_steps=6 format=3 uid="uid://bwhwinukjyq8q"]
+
+[ext_resource type="Script" path="res://Script/count.gd" id="1_msvm5"]
+[ext_resource type="Texture2D" uid="uid://bycexfak8ba6s" path="res://Sprite/Icon_Back.png" id="2_taru1"]
+[ext_resource type="Texture2D" uid="uid://d3ec4mj681s15" path="res://Sprite/Battery_ver2.png" id="3_n4mxy"]
+[ext_resource type="Texture2D" uid="uid://db2qlavw5f6qi" path="res://Sprite/Key/Slash_Key_ver2.png" id="4_jf5op"]
+[ext_resource type="Texture2D" uid="uid://b74uyp1jotado" path="res://Sprite/Number/Number_3.png" id="5_peban"]
+
+[node name="battery_count" type="Node2D"]
+script = ExtResource("1_msvm5")
+
+[node name="back" type="Sprite2D" parent="."]
+modulate = Color(0.521569, 0.521569, 0.521569, 0.313726)
+position = Vector2(18, 0)
+scale = Vector2(3.25, 1)
+texture = ExtResource("2_taru1")
+
+[node name="icon" type="Sprite2D" parent="."]
+texture = ExtResource("3_n4mxy")
+
+[node name="count_1" type="Sprite2D" parent="."]
+position = Vector2(13, 0)
+
+[node name="count_2" type="Sprite2D" parent="."]
+position = Vector2(18, 0)
+
+[node name="per" type="Sprite2D" parent="."]
+position = Vector2(23, 0)
+texture = ExtResource("4_jf5op")
+
+[node name="Max" type="Sprite2D" parent="."]
+position = Vector2(28, 0)
+texture = ExtResource("5_peban")

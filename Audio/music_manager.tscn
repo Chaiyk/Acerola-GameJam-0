@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://chfvqp2kmd7e"]
+
+[ext_resource type="AudioStream" uid="uid://ck5w6k13if1sw" path="res://Audio/Music/Acerola Jam Music_3_Adjust.wav" id="1_5frsx"]
+[ext_resource type="Script" path="res://Script/music_manager.gd" id="1_mn58c"]
+[ext_resource type="AudioStream" uid="uid://ba7ncaryhg4ck" path="res://Audio/Music/Acerola Jam Music_4_Adjust.wav" id="2_37h52"]
+[ext_resource type="AudioStream" uid="uid://cwrb51xxksuxo" path="res://Audio/Music/Acerola Jam Music_4_Adjust_2.wav" id="3_mp3b4"]
+
+[node name="Music Manager" type="Node2D"]
+script = ExtResource("1_mn58c")
+
+[node name="Music_1" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("1_5frsx")
+
+[node name="Music_2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_37h52")
+
+[node name="Music_3" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_mp3b4")
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

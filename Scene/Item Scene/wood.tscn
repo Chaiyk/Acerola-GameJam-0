@@ -8,7 +8,8 @@ size = Vector2(14, 14)
 [node name="Wood" type="Node2D" groups=["Wood"]]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-z_index = 20
+self_modulate = Color(0.0627451, 0.0627451, 0.0627451, 1)
+z_index = -1
 texture = ExtResource("1_rvl4f")
 
 [node name="Wood Area" type="Area2D" parent="."]

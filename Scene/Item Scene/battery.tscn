@@ -13,6 +13,8 @@ radius = 166.012
 script = ExtResource("1_xter3")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+self_modulate = Color(0.0627451, 0.0627451, 0.0627451, 1)
+z_index = -1
 texture = ExtResource("1_kf8ds")
 
 [node name="Battery Area" type="Area2D" parent="."]

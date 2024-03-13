@@ -1,5 +1,9 @@
 extends CharacterBody2D
 
+var End_Game: bool = false
+var Game_Over: bool = false
+var True_Game_Over: bool = false
+
 #Player Stat Var
 var SPEED : int = 100
 var MAX_HEALTH: int = 100
@@ -21,6 +25,10 @@ var icon_pos_2 = Vector2(170, 80)
 #Notice Var
 var notice_pos = Vector2(0, -20)
 
+#GameOver & YouLose Var
+var Game_Over_Scene = preload("res://Scene/game_over_scene.tscn").instantiate()
+var You_Lose_Scene = preload("res://Scene/you_lose_scene.tscn").instantiate()
+
 #-------------------------------------------------------------------#
 
 func _ready():
@@ -28,6 +36,8 @@ func _ready():
 	%E_Key.visible = false
 	$wood_count.visible = false
 	$battery_count.visible = false
+	$ui_torch.visible = false
+	
 	
 	#Set Current Health
 	CUR_HEALTH = MAX_HEALTH
@@ -38,6 +48,11 @@ func _physics_process(_delta):
 	var direction = Input.get_vector("Move_Left", "Move_Right", "Move_Up", "Move_Down")
 	velocity = direction * SPEED
 	move_and_slide()
+	
+	if (velocity.x != 0) || (velocity.y != 0):
+		$"Player Sprite".play("moving")
+	else:
+		$"Player Sprite".play("idle")
 	
 	#Arrow Aim to a Battery
 	arrow_rotation()
@@ -58,7 +73,13 @@ func _process(_delta):
 		set_debug_mode()
 	
 	#Health Management
-	health_checker()
+	if End_Game == false || Game_Over == true:
+		health_checker()
+	
+	#Game Restart
+	if Input.is_action_just_released("Restart"):
+		if End_Game == true || True_Game_Over == true:
+			get_tree().reload_current_scene()
 	
 	#E Key Visibility Control
 	e_key_visible()
@@ -79,7 +100,6 @@ func place_torch(pos):
 		instance.position = pos
 		get_parent().add_child(instance)
 	else:
-		print("Not Enough Wood")
 		insta_notice(1)
 
 #Pick Up Function
@@ -110,7 +130,10 @@ func interact():
 				elif (Global.Battery_Holding == 0) && (Global.Battery_Placed < 3):
 					insta_notice(2)
 				elif (Global.Battery_Placed == 3):
-					print("End Game")
+					add_child(Game_Over_Scene)
+					Game_Over = true
+					await get_tree().create_timer(8).timeout
+					True_Game_Over = true
 				return
 			_:
 				continue
@@ -159,27 +182,29 @@ func add_count_icon():
 	if (body.is_empty()):
 		return null
 	
-	match body[0].get_parent().get_groups()[0]:
-		"Battery":
-			if (ui_battery == false):
-				icon_count += 1
-				if (icon_count == 1):
-					$battery_count.position = icon_pos_1
-				else:
-					$battery_count.position = icon_pos_2
-				$battery_count.visible = true
-				ui_battery = true
-		"Wood":
-			if (ui_wood == false):
-				icon_count += 1
-				if (icon_count == 1):
-					$wood_count.position = icon_pos_1
-				else:
-					$wood_count.position = icon_pos_2
-				$wood_count.visible = true
-				ui_wood = true
-		_:
-			return
+	for touching in body:
+		match touching.get_parent().get_groups()[0]:
+			"Battery":
+				if (ui_battery == false):
+					icon_count += 1
+					if (icon_count == 1):
+						$battery_count.position = icon_pos_1
+					else:
+						$battery_count.position = icon_pos_2
+					$battery_count.visible = true
+					ui_battery = true
+			"Wood":
+				if (ui_wood == false):
+					icon_count += 1
+					if (icon_count == 1):
+						$wood_count.position = icon_pos_1
+					else:
+						$wood_count.position = icon_pos_2
+					$wood_count.visible = true
+					$ui_torch.visible = true
+					ui_wood = true
+			_:
+				continue
 
 #Update Count
 func update_number():
@@ -189,27 +214,42 @@ func update_number():
 	if ui_battery == true:
 		$battery_count.update_num(Global.Battery_Holding)
 
+#Go Into Darkness
 func health_checker():
 	var body = $PickUpArea.get_overlapping_areas()
 	
-	if CUR_HEALTH <= 0:
-		print("GAME OVER")
+	if (CUR_HEALTH <= 0) && (End_Game == false):
+		add_child(You_Lose_Scene)
+		End_Game = true
 	
 	for touching in body:
 		if touching.get_parent().get_groups()[0] == "Torch":
 			return
 	
-	if timer_setter == true:
+	if timer_setter == true && Game_Over == false:
 		$Timer.wait_time = timer_duration
 		$Timer.start()
 		timer_setter = false
 
 #Debug Mode Stuff
+#1-4 Portal Current Placed Battery
+#7 Add Wood
+#8 Add Battery
+#0 Reset Scene
 func set_debug_mode():
 	Global.debug_mode = !Global.debug_mode
 	print("Debug Mode: ", Global.debug_mode)
-func _input(event):
+func _input(event):	
 	if (event.as_text() == "7") && (Global.debug_mode == true):
 		Global.Wood_Picked_Up += 1
+		
 	if (event.as_text() == "8") && (Global.debug_mode == true):
 		Global.Battery_Holding += 1
+		
+	if (event.as_text() == "0") && (Global.debug_mode == true):
+		print("Game Restart")
+		get_tree().reload_current_scene()
+		
+	if (event.as_text() == "Minus") && (Global.debug_mode == true):
+		print("End")
+		CUR_HEALTH = 0

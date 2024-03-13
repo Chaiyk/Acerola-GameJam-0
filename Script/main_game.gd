@@ -7,18 +7,23 @@ var Y_Max_Range: int = 880
 
 #Wood Placer Var
 var Wood_Scene = preload("res://Scene/Item Scene/wood.tscn")
-var Wood_Place_Count: int = 50
+var Wood_Place_Count: int = 60
 
 #Eye Placer Var
 var Eye_One = preload("res://Scene/Mob/mob_one_eye.tscn")
 var Eye_Two = preload("res://Scene/Mob/mob_two_eye.tscn")
 var Eye_Three = preload("res://Scene/Mob/mob_three_eye.tscn")
-#var Eye_Six = preload("res://Scene/Mob/mob_six_eye.tscn")
-var Eye_Max_Count: int = 30
+var Eye_Max_Count: int = 40
 
 func _ready():
-	print("Checking Max X Range: ", $Spawn_Range.size.x - 200)
-	print("Checking Max Y Range: ", $Spawn_Range.size.y - 200)
+	#Reset Var
+	Global.Battery_Holding = 0
+	Global.Battery_Placed = 0 
+	Global.Wood_Picked_Up = 0
+	
+	#Player Music
+	if MusicManager.music_playeing == false:
+		MusicManager.music_play()
 	
 	#Place Battery x3
 	for i in 3:
@@ -33,7 +38,6 @@ func _ready():
 
 #Place Battery Function
 func place_battery(pos):
-	print("Battery Pos: ", pos)
 	var instantiate_battery = Battery_Scene.instantiate()
 	instantiate_battery.position = pos
 	add_child(instantiate_battery)

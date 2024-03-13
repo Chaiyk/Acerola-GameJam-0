@@ -7,5 +7,3 @@ func _physics_process(_delta):
 	
 	#Eye Ball Following Player Based on direction
 	$Ball.position = dir * 1.5
-
-	

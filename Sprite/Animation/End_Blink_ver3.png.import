@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bauoqc77i8ps1"
-path="res://.godot/imported/Player.png-7cf1686b09a372f81d034910eb9a33be.ctex"
+uid="uid://dni52sndb7kqp"
+path="res://.godot/imported/End_Blink_ver3.png-598e598ace03cc051259077c3b37e963.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprite/Player.png"
-dest_files=["res://.godot/imported/Player.png-7cf1686b09a372f81d034910eb9a33be.ctex"]
+source_file="res://Sprite/Animation/End_Blink_ver3.png"
+dest_files=["res://.godot/imported/End_Blink_ver3.png-598e598ace03cc051259077c3b37e963.ctex"]
 
 [params]
 

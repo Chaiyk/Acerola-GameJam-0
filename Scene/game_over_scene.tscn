@@ -1,0 +1,141 @@
+[gd_scene load_steps=13 format=3 uid="uid://iglp80ocghw7"]
+
+[ext_resource type="Texture2D" uid="uid://dni52sndb7kqp" path="res://Sprite/Animation/End_Blink_ver3.png" id="1_g0xdu"]
+[ext_resource type="Script" path="res://Script/game_over_scene.gd" id="1_s8dgh"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_il4lm"]
+atlas = ExtResource("1_g0xdu")
+region = Rect2(384, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bvraw"]
+atlas = ExtResource("1_g0xdu")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_okmlk"]
+atlas = ExtResource("1_g0xdu")
+region = Rect2(640, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4s7s4"]
+atlas = ExtResource("1_g0xdu")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_84qe0"]
+atlas = ExtResource("1_g0xdu")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gv6hu"]
+atlas = ExtResource("1_g0xdu")
+region = Rect2(512, 0, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_b5csc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_il4lm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bvraw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_okmlk")
+}, {
+"duration": 7.0,
+"texture": SubResource("AtlasTexture_4s7s4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_84qe0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gv6hu")
+}],
+"loop": true,
+"name": &"blink",
+"speed": 3.0
+}]
+
+[sub_resource type="LabelSettings" id="LabelSettings_74quy"]
+font_size = 50
+font_color = Color(1, 1, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_67i3c"]
+font_size = 10
+font_color = Color(1, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_iev0o"]
+font_color = Color(0.6, 0.6, 0.6, 1)
+
+[node name="Game_Over_Scene" type="Node2D"]
+z_index = 100
+script = ExtResource("1_s8dgh")
+
+[node name="Right_Eye" type="AnimatedSprite2D" parent="."]
+position = Vector2(100, 0)
+sprite_frames = SubResource("SpriteFrames_b5csc")
+animation = &"blink"
+autoplay = "blink"
+
+[node name="Left_Eye" type="AnimatedSprite2D" parent="."]
+position = Vector2(-100, 0)
+sprite_frames = SubResource("SpriteFrames_b5csc")
+animation = &"blink"
+autoplay = "blink"
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 8.0
+one_shot = true
+autostart = true
+
+[node name="Background" type="ColorRect" parent="."]
+z_index = -30
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -913.0
+offset_top = -635.0
+offset_right = 955.0
+offset_bottom = 601.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.00784314, 0.00784314, 0.00784314, 1)
+
+[node name="The_End" type="Label" parent="."]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -97.0
+offset_top = -69.0
+offset_right = 96.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "The End"
+label_settings = SubResource("LabelSettings_74quy")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="The_End2" type="Label" parent="."]
+visible = false
+offset_left = -165.0
+offset_top = 5.0
+offset_right = 165.0
+offset_bottom = 47.0
+text = "You Can't Run Forever"
+label_settings = SubResource("LabelSettings_67i3c")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Restart" type="Label" parent="."]
+visible = false
+offset_left = -74.0
+offset_top = 70.0
+offset_right = 74.0
+offset_bottom = 93.0
+text = "Press \"R\" to restart"
+label_settings = SubResource("LabelSettings_iev0o")
+horizontal_alignment = 1
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

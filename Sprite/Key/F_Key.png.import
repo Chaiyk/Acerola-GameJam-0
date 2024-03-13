@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://17b7m0320hwt"
-path="res://.godot/imported/E_Key.png-1114ad7834c40d236127ba1723b07a91.ctex"
+uid="uid://cv2m0pu1wr1r0"
+path="res://.godot/imported/F_Key.png-508a1d2018148c244b6ce2c365417522.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprite/E_Key.png"
-dest_files=["res://.godot/imported/E_Key.png-1114ad7834c40d236127ba1723b07a91.ctex"]
+source_file="res://Sprite/Key/F_Key.png"
+dest_files=["res://.godot/imported/F_Key.png-508a1d2018148c244b6ce2c365417522.ctex"]
 
 [params]
 
